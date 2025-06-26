@@ -1,0 +1,109 @@
+/* Umum */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #ffdde1, #ee9ca7);
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+}
+
+/* Amplop */
+.envelope {
+  position: relative;
+  width: 300px;
+  height: auto;
+  z-index: 1;
+}
+
+.amplop-img {
+  width: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: none;
+}
+
+#closedImage {
+  display: block;
+  z-index: 1;
+}
+
+#openImage {
+  z-index: 1;
+}
+
+/* Surat */
+.letter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260px;
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: #ffe4ec;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  text-align: left;
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.letter.show {
+  opacity: 1;
+  transform: translate(-50%, -100%) scale(1);
+  pointer-events: auto;
+}
+
+/* Tanda tangan */
+.signature {
+  margin-top: 20px;
+  font-style: italic;
+  color: #888;
+}
+
+/* Petunjuk */
+.hint {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px #000;
+}
+
+/* Tombol Tutup */
+.close-btn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background-color: #ff6f91;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #e0557a;
+}

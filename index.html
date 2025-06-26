@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+</head>
+
+<body>
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="background.mp4" type="video/mp4" />
+  </video>  
+  <main class="container">
+    <div class="envelope" id="envelope">
+      <img src="amplop-tertutup.png" id="closedImage" class="amplop-img" alt="Amplop Tertutup" />
+      <img src="amplop-terbuka.png" id="openImage" class="amplop-img" alt="Amplop Terbuka" />
+
+      <div class="letter" id="letter">
+        <h2>Semangat Ujian nya sayangggg! 🎉</h2>
+        <p>semoga ujiannya lancar dan hasil nya memuaskan god bless uuu</p>
+        <p class="signature">— Bram 🧸</p>
+        <button class="close-btn" onclick="closeCard(event)">Tutup</button>
+      </div>
+    </div>
+
+    <p class="hint">Klik amplop untuk buka surat 💌</p>
+  </main>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+
+    envelope.addEventListener("click", function (e) {
+      if (!e.target.closest(".letter")) {
+        this.classList.add("open");
+
+        const surat = document.querySelector('.letter');
+        surat.classList.add('show');
+        surat.setAttribute('data-x', 0);
+        surat.setAttribute('data-y', 0);
+        surat.style.transform = 'translate(-50%, -100%)';
+      }
+    });
+
+    function closeCard(e) {
+      e.stopPropagation();
+      envelope.classList.remove("open");
+
+      const surat = document.querySelector('.letter');
+      surat.classList.remove('show');
+      surat.style.transform = 'translate(-50%, -50%)';
+      surat.setAttribute('data-x', 0);
+      surat.setAttribute('data-y', 0);
+    }
+
+    interact('.letter').draggable({
+      listeners: {
+        move(event) {
+          const target = event.target;
+          const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+          const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+          target.style.transform = `translate(-50%, -180%) translate(${x}px, ${y}px)`;
+          target.setAttribute('data-x', x);
+          target.setAttribute('data-y', y);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
